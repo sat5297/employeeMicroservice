@@ -10,7 +10,19 @@ const getEmployeeById = (body) => {
     return employee;
 };
 
+const updateEmployee = (body) => {
+    const employee = empRepository.updateEmployee(body);
+    return employee;
+};
+
+const addEmployee = (body) => {
+    const add = empRepository.addEmployee(body);
+    return add;
+}
+
 module.exports = {
     getAllEmployees,
-    getEmployeeById
+    getEmployeeById,
+    updateEmployee,
+    addEmployee
 };

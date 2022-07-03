@@ -13,6 +13,16 @@ const getEmployeeById = async (req,res) => {
     res.send(employee);
 };
 
+const updateEmployee = async (req,res) => {
+    const employee = await empService.updateEmployee(req.body);
+    res.send(employee);
+};
+
+const addEmployee = async (req,res) => {
+    const add = await empService.addEmployee(req.body);
+    res.send(add);
+};
+
 const employeeFunction = (req,res) => {
     res.send("We have 3 routes here. <ul> <li> /all to list all the employees </li> <li> /:id to list a specific employee </li> <li> /:name to list employee with name </li> </ul>");
 };
@@ -20,5 +30,7 @@ const employeeFunction = (req,res) => {
 module.exports = {
     getAllEmployees,
     getEmployeeById,
-    employeeFunction
+    employeeFunction,
+    updateEmployee,
+    addEmployee
 };

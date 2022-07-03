@@ -13,4 +13,10 @@ router.route('/id')
         .get(employeeController.getEmployeeById)
         .post(employeeController.getEmployeeById)
 
+router.route('/update')
+        .post(employeeController.updateEmployee)
+
+router.route('/add')
+        .post(employeeController.addEmployee)
+
 module.exports = router;
