@@ -18,11 +18,17 @@ const updateEmployee = (body) => {
 const addEmployee = (body) => {
     const add = empRepository.addEmployee(body);
     return add;
+};
+
+const deleteEmployee = (body) => {
+    const del = empRepository.deleteEmployee(body);
+    return del;
 }
 
 module.exports = {
     getAllEmployees,
     getEmployeeById,
     updateEmployee,
-    addEmployee
+    addEmployee,
+    deleteEmployee
 };

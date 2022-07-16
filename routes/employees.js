@@ -19,4 +19,7 @@ router.route('/update')
 router.route('/add')
         .post(employeeController.addEmployee)
 
+router.route('/delete')
+        .post(employeeController.deleteEmployee)
+
 module.exports = router;

@@ -23,6 +23,11 @@ const addEmployee = async (req,res) => {
     res.send(add);
 };
 
+const deleteEmployee = async(req,res) => {
+    const del = await empService.deleteEmployee(req.body);
+    res.send(del);
+}
+
 const employeeFunction = (req,res) => {
     res.send("We have 3 routes here. <ul> <li> /all to list all the employees </li> <li> /:id to list a specific employee </li> <li> /:name to list employee with name </li> </ul>");
 };
@@ -32,5 +37,6 @@ module.exports = {
     getEmployeeById,
     employeeFunction,
     updateEmployee,
-    addEmployee
+    addEmployee,
+    deleteEmployee
 };

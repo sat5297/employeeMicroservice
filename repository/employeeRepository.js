@@ -34,7 +34,7 @@ const getAllEmployees = async (query) => {
         console.log(query, searchOptions)
         return new Promise((resolve,reject) => {
             client.connect(async err => {
-                const employeeCollection = client.db("employee").collection("allinfoemp");
+                const employeeCollection = client.db("corpinfoemp").collection("corpinfoemp");
                 try{
                     const employee = await employeeCollection.find(searchOptions).toArray();
                     console.log(employee);
@@ -55,7 +55,7 @@ const getEmployeeById = async (query) => {
     console.log(query, searchOptions,"repo");
     return new Promise((resolve,reject) => {
         client.connect(async err => {
-            const employeeCollection = client.db("employee").collection("allinfoemp");
+            const employeeCollection = client.db("allinfoemp").collection("allinfoemp");
             try{
                 const employee = await employeeCollection.find(searchOptions).toArray();
                 console.log(employee, "repo");
@@ -94,7 +94,7 @@ const updateEmployee = async (body) => {
     console.log(body,employee,searchOptions);
     return new Promise((resolve,reject) => {
         client.connect(async err => {
-            const employeeCollection = client.db("employee").collection("allinfoemp");
+            const employeeCollection = client.db("allinfoemp").collection("allinfoemp");
             try{
                 await employeeCollection.findOneAndUpdate(searchOptions, {$set : {"empAadhar" : employee.empAadhar, 
                 "empPan" : employee.empPan, "empCell" : employee.empCell, "empAddress" : employee.empAddress,
@@ -113,12 +113,12 @@ const addEmployee = async (body) => {
     const employee = new EmployeeModel(body);
     return new Promise((resolve,reject) => {
         client.connect(async err => {
-            const employeeCollection = client.db("employee").collection("allinfoemp");
+            const employeeCollection = client.db("allinfoemp").collection("allinfoemp");
             try{
                 await employeeCollection.insertOne(employee).then((res) => {
                     console.log(res);
                     if(res.acknowledged){
-                        resolve("Added Employee.");
+                        resolve("Employee added successfully in All Info Employee Database.");
                     }else{
                         resolve("Unable to add employee");
                     }
@@ -130,9 +130,35 @@ const addEmployee = async (body) => {
     });
 };
 
+const deleteEmployee = async (body) => {
+    let searchOptions = {};
+    if(body.empID != null && body.empID !== ""){
+        searchOptions.empID = body.empID;
+    }
+    console.log(body,searchOptions);
+    return new Promise((resolve,reject) => {
+        client.connect(async err => {
+            const employeeCollection = client.db("allinfoemp").collection("allinfoemp");
+            try{
+                await employeeCollection.deleteOne(searchOptions).then((res) => {
+                    if(res.acknowledged){
+                        resolve("Employee Deleted Successfully from All Info Employee Database.");
+                    }else{
+                        resolve("Unable to delete Employee from All Info Employee Database.");
+                    }
+                });
+            }
+            catch{
+                reject("Error in Deleting Employee");
+            }
+        })
+    })
+};
+
 module.exports = {
     getAllEmployees,
     getEmployeeById,
     updateEmployee,
-    addEmployee
-}
+    addEmployee,
+    deleteEmployee
+};
