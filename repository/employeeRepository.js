@@ -135,11 +135,13 @@ const deleteEmployee = async (body) => {
     if(body.empID != null && body.empID !== ""){
         searchOptions.empID = body.empID;
     }
+    const emp = new EmployeeModel(body);
     console.log(body,searchOptions);
     return new Promise((resolve,reject) => {
         client.connect(async err => {
             const employeeCollection = client.db("allinfoemp").collection("allinfoemp");
             try{
+                await updateManager(emp);
                 await employeeCollection.deleteOne(searchOptions).then((res) => {
                     if(res.acknowledged){
                         resolve("Employee Deleted Successfully from All Info Employee Database.");
@@ -153,6 +155,28 @@ const deleteEmployee = async (body) => {
             }
         })
     })
+};
+
+const updateManager = async (payroll) => {
+    let searchOptions = {};
+    if(payroll.empID != null && payroll.empID !== ""){
+        searchOptions.empManagerID = payroll.empID;
+    }
+    return new Promise((resolve,reject) => {
+        client.connect(async err => {
+            const payrollCollection = client.db("allinfoemp").collection("allinfoemp");
+            try{
+                await payrollCollection.updateMany(searchOptions, 
+                    {$set : {empManagerID : payroll.empManagerID, empManager : payroll.empManager }}).then((res) => {
+                        console.log(res);
+                        resolve("Updated the Manager in All Info Employee Database");
+                })
+            }
+            catch{
+                reject("Error in Promise");
+            }
+        });
+    });
 };
 
 module.exports = {
