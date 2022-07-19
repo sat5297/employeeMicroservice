@@ -13,23 +13,23 @@ const client = new MongoClient(process.env.DATABASE_URL, {
 const getAllEmployees = async (query) => {
         let searchOptions = {};
         console.log(query, searchOptions);
-        if(query.empname != null && query.empname !== ''){
-            searchOptions.empName = new RegExp(query.empname, 'i');
+        if(query.empName != null && query.empName !== ''){
+            searchOptions.empName = new RegExp(query.empName, 'i');
         }
-        if(query.empid != null && query.empid !== ''){
-            searchOptions.empID = new RegExp(query.empid, 'i');
+        if(query.empID != null && query.empID !== ''){
+            searchOptions.empID = new RegExp(query.empID, 'i');
         }
-        if(query.empmanager != null && query.empmanager !== ''){
-            searchOptions.empManager = new RegExp(query.empmanager, 'i');
+        if(query.empManager != null && query.empManager !== ''){
+            searchOptions.empManager = new RegExp(query.empManager, 'i');
         }
-        if(query.empmanagerid != null && query.empmanagerid !== ''){
-            searchOptions.empManagerID = new RegExp(query.empmanagerid, 'i');
+        if(query.empManagerID != null && query.empManagerID !== ''){
+            searchOptions.empManagerID = new RegExp(query.empManagerID, 'i');
         }
-        if(query.empdept != null && query.empdept !== ''){
-            searchOptions.empDept = new RegExp(query.empdept, 'i');
+        if(query.empDept != null && query.empDept !== ''){
+            searchOptions.empDept = new RegExp(query.empDept, 'i');
         }
-        if(query.emplocation != null && query.emplocation !== ''){
-            searchOptions.empLocation = new RegExp(query.emplocation, 'i');
+        if(query.empLocation != null && query.empLocation !== ''){
+            searchOptions.empLocation = new RegExp(query.empLocation, 'i');
         }
         console.log(query, searchOptions)
         return new Promise((resolve,reject) => {

@@ -15,11 +15,13 @@ router.route('/id')
 
 router.route('/update')
         .post(employeeController.updateEmployee)
+        .patch(employeeController.updateEmployee)
 
 router.route('/add')
         .post(employeeController.addEmployee)
 
 router.route('/delete')
         .post(employeeController.deleteEmployee)
+        .delete(employeeController.deleteEmployee)
 
 module.exports = router;
