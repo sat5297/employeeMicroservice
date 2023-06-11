@@ -8,7 +8,7 @@ It includes the following functionalities:
     <li>The employee can search/filter the employees in the organization.</li>
   </ul>
  
-<a href="https://documenter.getpostman.com/view/10075006/UzQyq3kC"> <h2> API Documentation </h2> </a>
+<h2> <a href="https://documenter.getpostman.com/view/10075006/UzQyq3kC"> API Documentation </a> </h2>
   
 # Update Personal Info
 <img src="https://github.com/sat5297/employeeMicroservice/blob/master/UpdatePersonalInfo.jpeg" alt="Update Personal Info" />
